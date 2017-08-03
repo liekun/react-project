@@ -1,9 +1,8 @@
 /**
- * Created by lenovo on 2017/6/20.
+ * Created by AoSnow on 2017/6/20.
  */
-	//通过模块提取
-const Webpack=require('webpack');
-module.exports =new Webpack.optimize.CommonsChunkPlugin({
-	name:['vendor'],
-	minChunks:2
-});
+const Webpack = require( "webpack" );
+module.exports = new Webpack.optimize.CommonsChunkPlugin( {
+	names: [ 'vendor' ],
+	minChunks: 2
+} );

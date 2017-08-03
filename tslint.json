@@ -1,22 +1,29 @@
 {
 	"defaultSeverity": "error",
-	"extends": [ "tslint:recommended","tslint-react"],
+	"extends": [ "tslint:recommended", "tslint-react" ],
 	"jsRules": {
 		"indent": [ "tabs" ],
 		"linebreak-style": [ "CRLF" ],
-		"max-line-length": [ true, 120 ],
+		"max-line-length": [ true, 150 ],
 		"trailing-comma": [ true, { "multiline": "never", "singleline": "never" } ],
 		"one-line": [ true, "check-whitespace" ]
 	},
 	"rules": {
 		"indent": [ "tabs" ],
 		"linebreak-style": [ "CRLF" ],
-		"max-line-length": [ true, 120 ],
+		"max-line-length": [ true, 150 ],
 		"trailing-comma": [ true, { "multiline": "never", "singleline": "never" } ],
 		"one-line": [ true, "check-whitespace" ],
 		"prefer-const": false,
-		"quotemark": [true, "single", "avoid-escape", "jsx-double"],
+		"quotemark": false,
+		"object-literal-sort-keys": false,
 		"member-access": true,
+		"no-console": false,
+		"no-eval": false,
+		"ordered-imports": false,
+		"jsx-no-lambda": false,
+		"jsx-alignment": false,
+		"jsx-no-multiline-js": false,
 		"member-ordering": [
 			true, {
 				"order": [
@@ -32,8 +39,8 @@
 				]
 			}
 		],
-		"whitespace": [true,
-			"check-branch",
+		"whitespace": [
+			true,
 			"check-decl",
 			"check-module",
 			"check-operator",
@@ -56,8 +63,8 @@
 				"variable-declaration": "nospace"
 			}
 		],
-		"variable-name": [ true, "ban-keywords", "check-format", "allow-leading-underscore" ]
+		"variable-name": [ true, "ban-keywords", "allow-leading-underscore" ],
+		"interface-name": false
 	},
 	"rulesDirectory": [ ]
 }
-

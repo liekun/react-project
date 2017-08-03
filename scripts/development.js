@@ -1,66 +1,67 @@
 /**
  * 开发环境配置（webpack-dev-server）
- * Created by lenovo on 2017/6/19.
+ * Created by AoSnow on 2017/6/19.
  */
-const Path=require('path');
-// const Webpack=require('webpack');
 
-const ROOT=Path.resolve(__dirname,'../');
-const  SRC_DIR=Path.resolve(ROOT,'src');
-const DIST_DIR=Path.resolve(ROOT,'dist');
-const TPL_DIR=Path.resolve(SRC_DIR,'tpl');
+const Path = require( 'path' );
 
-const loader={rules:[]};
-const plugins=[];
+const ROOT = Path.resolve( __dirname, '../' );
+const SRC_DIR = Path.resolve( ROOT, 'src' );
+const DIST_DIR = Path.resolve( ROOT, 'dist' );
+const TPL_DIR = Path.resolve( SRC_DIR, 'tpl' );
 
-//插件预定义 css内容提取成獨立文件
-const scssExtractor=require('./plugins/ExtractTextWebpackPlugin');
+const loader = { rules: [] };
+const plugins = [];
 
-//组织加载器列表
-// rules.rules.push(rquire('rules/scss'));
+// CSS内容提取成独立文件
+const scssExtractor = require( './plugins/ExtractTextWebpackPlugin' );
+
+// 组织加载器列表
 loader.rules.push(
-	require('./rules/scss')(scssExtractor),
-	require('./rules/fonts'),
-	require('./rules/image'),
-	require('./rules/html'),
+	require( './rules/scss' )( scssExtractor ),
+	require( './rules/fonts' ),
+	require( './rules/image' ),
+	require( './rules/html' ),
 	require( './rules/typescript' )
- );
-
-//组织插件列表
-plugins.push(
-	scssExtractor,
-	require('./plugins/CommonsChunkPlugin')
 );
 
-//模板页面列表
-const  pages=require('./plugins/HtmlWebpackPlugin')(TPL_DIR);
-Array.prototype.push.apply(plugins,pages);
+// 组织插件列表
+plugins.push(
+	scssExtractor,
+	require( './plugins/CommonsChunkPlugin' )
+);
 
+// 模板页面列表
+const pages = require( './plugins/HtmlWebpackPlugin' )( TPL_DIR );
+Array.prototype.push.apply( plugins, pages );
 
-module.exports={
+module.exports = {
+	devtool: 'cheap-eval-source-map',
 	entry: {
 		app: './src/app.tsx',
-		vendor: [ "react", "react-dom" ]
-},
+		vendor: [ 'react', 'react-dom' ]
+	},
 	output: {
 		filename: "js/[name].js",
 		path: DIST_DIR
+		//publicPath: "../"
 	},
-	externals:{
-		"react": "React",
-		"react-dom": "ReactDOM",
-	},
-	module:loader,
-	plugins:plugins,
-	resolve:{
-		extensions:['.js','.scss','.tsx','.ts','.json']
+	//externals: {
+	//	"react": "React",
+	//	"react-dom": "ReactDOM"
+	//},
+	module: loader,
+	plugins: plugins,
+	resolve: {
+		modules: [ Path.resolve( SRC_DIR, "modules" ), "node_modules" ],
+		extensions: [ '.scss', '.js', '.ts', '.tsx', '.json' ]
 	},
 	devServer: {
 		// 内容根目录
-		contentBase:'./dist',
+		contentBase: './dist',
 		// 告诉服务器监视那些通过 devServer.contentBase 选项提供的文件
 		// 文件改动将触发整个页面重新加载
-		//watchContentBase: true,
+		// watchContentBase: true,
 		// 是否启用 gzip 压缩
 		compress: true,
 		// 服务端口

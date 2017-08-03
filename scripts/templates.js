@@ -1,6 +1,7 @@
 /**
- * Created by lenovo on 2017/6/19.
+ * Created by AoSnow on 2017/6/19.
  */
+
 // 模板配置
 // 页面配置
 // 配置中的路径都是相对于模板 tpl 路径来设置（tpl 路径由外部传入）
